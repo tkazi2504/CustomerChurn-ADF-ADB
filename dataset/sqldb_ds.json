@@ -1,0 +1,17 @@
+{
+	"name": "sqldb_ds",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqldb_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Customer_churn"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

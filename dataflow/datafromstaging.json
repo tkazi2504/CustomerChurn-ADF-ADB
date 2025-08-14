@@ -1,0 +1,57 @@
+{
+	"name": "datafromstaging",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "adls_ds",
+						"type": "DatasetReference"
+					},
+					"name": "StagingData"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ccparquet_ds",
+						"type": "DatasetReference"
+					},
+					"name": "presentationlayer"
+				}
+			],
+			"transformations": [
+				{
+					"name": "filter1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          CustomerID as string,",
+				"          Age as string,",
+				"          Gender as string,",
+				"          Tenure as string,",
+				"          MonthlyCharges as string,",
+				"          ContractType as string,",
+				"          InternetService as string,",
+				"          TotalCharges as string,",
+				"          TechSupport as string,",
+				"          Churn as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> StagingData",
+				"StagingData filter(InternetService!=\"None\") ~> filter1",
+				"filter1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> presentationlayer"
+			]
+		}
+	}
+}

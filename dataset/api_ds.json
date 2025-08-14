@@ -1,0 +1,31 @@
+{
+	"name": "api_ds",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "api_ls",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"load": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": {
+					"value": "/tkazi2504/Customer-Churn-ADF-Dataflow/refs/heads/main/Datafiles/@{dataset().load}",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

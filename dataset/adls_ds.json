@@ -1,0 +1,73 @@
+{
+	"name": "adls_ds",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"filename": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().filename",
+					"type": "Expression"
+				},
+				"fileSystem": "staging"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "CustomerID",
+				"type": "String"
+			},
+			{
+				"name": "Age",
+				"type": "String"
+			},
+			{
+				"name": "Gender",
+				"type": "String"
+			},
+			{
+				"name": "Tenure",
+				"type": "String"
+			},
+			{
+				"name": "MonthlyCharges",
+				"type": "String"
+			},
+			{
+				"name": "ContractType",
+				"type": "String"
+			},
+			{
+				"name": "InternetService",
+				"type": "String"
+			},
+			{
+				"name": "TotalCharges",
+				"type": "String"
+			},
+			{
+				"name": "TechSupport",
+				"type": "String"
+			},
+			{
+				"name": "Churn",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
